@@ -1,4 +1,4 @@
-* {
+ * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -9,6 +9,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             overflow: hidden;
+            /* Allow scrolling for the body if necessary, though slides manage their own */
         }
 
         .presentation-container {
@@ -31,7 +32,7 @@
             padding: 40px;
             display: none;
             flex-direction: column;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow vertical scrolling within the slide */
             animation: slideIn 0.5s ease-in-out;
         }
 
@@ -201,7 +202,9 @@
             font-size: 0.95rem;
             margin: 15px 0;
             border-left: 4px solid #667eea;
-            overflow-x: auto;
+            overflow-x: auto; /* Allows horizontal scrolling for very long lines */
+            white-space: pre-wrap; /* Ensures lines wrap if they are too long */
+            word-break: break-word; /* Breaks words if necessary to prevent overflow */
         }
 
         .code-output {
@@ -304,7 +307,7 @@
 
         .data-types {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjusted minmax for smaller screens */
             gap: 15px;
             margin: 20px 0;
         }
@@ -315,6 +318,7 @@
             padding: 15px;
             border-radius: 15px;
             text-align: center;
+            font-size: 0.9rem; /* Smaller font for data type boxes */
         }
 
         .thank-you {
@@ -371,25 +375,199 @@
             text-align: center;
         }
 
+        /* --- Mobile Responsiveness Adjustments --- */
         @media (max-width: 768px) {
             .slide {
-                padding: 20px;
+                padding: 15px; /* Reduce padding on smaller screens */
                 width: 98vw;
                 height: 98vh;
+                border-radius: 10px; /* Slightly smaller border-radius */
             }
             
             .slide h1 {
-                font-size: 2rem;
+                font-size: 1.8rem; /* Scale down main heading */
+                margin-bottom: 15px;
             }
             
             .slide h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem; /* Scale down subheading */
+                margin-bottom: 20px;
             }
             
             .slide h3 {
-                font-size: 1.4rem;
+                font-size: 1.2rem; /* Scale down section heading */
+                margin-bottom: 15px;
+                padding-bottom: 5px;
+            }
+
+            .slide h4 {
+                font-size: 1.1rem; /* Scale down sub-section heading */
+                margin: 15px 0 10px 0;
+            }
+
+            .slide p, .slide ul, .slide li {
+                font-size: 0.9rem; /* Smaller body text and list items */
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+
+            .slide ul {
+                margin-left: 15px; /* Reduce list indentation */
+            }
+
+            .title-slide .subtitle,
+            .title-slide .author,
+            .title-slide .details {
+                font-size: 0.95rem; /* Scale down title slide text */
+                margin-bottom: 10px;
+            }
+
+            .logos {
+                gap: 15px; /* Reduce gap between logos */
+                margin-top: 20px;
+            }
+
+            .logo {
+                width: 50px; /* Smaller logos */
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .navigation {
+                gap: 10px; /* Reduce gap between navigation buttons */
+                bottom: 10px; /* Move buttons closer to bottom */
+            }
+
+            .nav-btn {
+                padding: 8px 15px; /* Smaller buttons */
+                font-size: 0.85rem;
+            }
+
+            .slide-counter {
+                top: 10px; /* Move counter up */
+                right: 10px;
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+
+            .code-snippet {
+                padding: 15px; /* Smaller padding for code blocks */
+                font-size: 0.8rem; /* Smaller font size for code */
+                margin: 10px 0;
+            }
+
+            .code-output {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+
+            .two-column, .three-column {
+                grid-template-columns: 1fr; /* Collapse to single column */
+                gap: 15px; /* Reduce gap between collapsed items */
+                margin: 15px 0;
+            }
+
+            .concept-box, .project-box, .error-box, .success-box, .module-overview, .certification-box {
+                padding: 15px; /* Smaller padding for information boxes */
+                margin: 10px 0;
+                border-radius: 10px;
+            }
+
+            .flowchart-step {
+                padding: 8px 15px; /* Smaller flowchart steps */
+                border-radius: 20px;
+                margin: 5px;
+                font-size: 0.9rem;
+            }
+
+            .arrow {
+                font-size: 1.2rem; /* Smaller arrows */
+                margin: 0 5px;
             }
             
-            .two-column, .three-column {
-                grid-template-columns: 1fr;
-            } }
+            .data-types {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Even smaller min width for data types */
+                gap: 10px;
+            }
+            .data-type {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+
+            .thank-you {
+                font-size: 2.5rem; /* Smaller thank you text */
+                margin-bottom: 20px;
+            }
+
+            .questions {
+                font-size: 1.2rem; /* Smaller Q&A text */
+                padding: 15px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Even smaller screens (e.g., iPhone 5/SE, older Androids) */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .slide h1 {
+                font-size: 1.5rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.3rem;
+            }
+            
+            .slide h3 {
+                font-size: 1.1rem;
+            }
+
+            .slide h4 {
+                font-size: 1rem;
+            }
+
+            .slide p, .slide ul, .slide li {
+                font-size: 0.85rem;
+            }
+
+            .logos {
+                gap: 10px;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+
+            .slide-counter {
+                padding: 3px 8px;
+                font-size: 0.7rem;
+            }
+
+            .code-snippet {
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+
+            .code-output {
+                padding: 8px;
+                font-size: 0.75rem;
+            }
+
+            .thank-you {
+                font-size: 2rem;
+            }
+
+            .questions {
+                font-size: 1rem;
+            }
+        }
